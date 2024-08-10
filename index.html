@@ -6,11 +6,12 @@
     <title>Namaste React</title>
 </head>
 <body>
-    <div id="root">
-        <script>
-            const heading=document.createElement("h1");
-            heading.innerHTML="Hello World from Javascript!";
-        </script>
-    </div>
+    <div id="root"></div>
+    <script>
+        const heading=document.createElement("h1");
+        heading.innerHTML="Hello World from Javascript!";
+        const root=document.getElementById("root");
+        root.appendChild(heading);//heading will go as a child to the root and root represents the div tag
+    </script>
 </body>
 </html>

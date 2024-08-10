@@ -7,4 +7,4 @@
 6. git add .
 7. git status
 8. git commit -m "Message"
-9. git push origin <branchname>
+9. git push origin < branchname >

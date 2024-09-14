@@ -56,8 +56,13 @@ const Title= function(){
 const number=10000;
 const HeadingComponent= () =>(
     <div id="container">
+    {Title()}
     <Title />
+    <Title></Title>
+    {jsxHeading}
     {number}
+    <h1>{100+200}</h1>
+    <h2>{console.log("abc")}</h2>
         <h1 className="heading">Namaste React Functional Component</h1>
     </div>
 ); //Rendering one func component in another func component

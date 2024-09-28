@@ -86,10 +86,40 @@ const Header= () =>{
     )
 }
 
+const StyleCard= {
+    backgroundColor: "#f0f0f0"
+}
+
+const RestaurantCard= () =>{
+    return(
+        <div className="res-card" style={StyleCard}>
+            <img className="res-logo" alt="res-logo" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/j88ngtan5pxib04das3y"></img>
+            <h3>Ghuma Ghumalu</h3>
+            <h4>Biryani, Andhra, Asian</h4>
+            <h4>4.1 stars</h4>
+            <h4>45-50 Mins</h4>
+        </div>
+    )
+}
+
+const Body= () =>{
+    return(
+        <div className="body">
+            <div className="search">
+                Search
+            </div>
+            <div className="restro-container">
+                <RestaurantCard />
+            </div>
+        </div>
+    )
+}
+
 const AppLayout=()=>{
     return(
         <div className="app">
             <Header />
+            <Body />
         </div>
     )
 }

@@ -90,12 +90,13 @@ const StyleCard= {
     backgroundColor: "#f0f0f0"
 }
 
-const RestaurantCard= () =>{
+const RestaurantCard= (props) =>{
+    const {resName, cuisine} = props;
     return(
         <div className="res-card" style={StyleCard}>
             <img className="res-logo" alt="res-logo" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/j88ngtan5pxib04das3y"></img>
-            <h3>Ghuma Ghumalu</h3>
-            <h4>Biryani, Andhra, Asian</h4>
+            <h3>{props.resName}</h3>
+            <h4>{props.cuisine}</h4>
             <h4>4.1 stars</h4>
             <h4>45-50 Mins</h4>
         </div>
@@ -109,7 +110,8 @@ const Body= () =>{
                 Search
             </div>
             <div className="restro-container">
-                <RestaurantCard />
+                <RestaurantCard resName="Ghuma Ghumalu" cuisine="Biryani, Andhra, Asian" />
+                <RestaurantCard resName="KFC" cuisine="Burger, Fast Food" />
             </div>
         </div>
     )

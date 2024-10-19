@@ -13,7 +13,7 @@ const resList=[
           "Tibetan",
           "Desserts"
         ],
-        "avgRating": 4.2,
+        "avgRating": 3.5,
         "parentId": "61955",
         "avgRatingString": "4.2",
         "totalRatingsString": "1.8K+",

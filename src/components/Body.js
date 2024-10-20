@@ -5,6 +5,8 @@ import Shimmer from "./Shimmer";
 
 const Body= () =>{
     const [listOfRestaurants,setResList]=useState([]);
+    const [filteresRestaurants,setFilteredRestaurants]=useState([]);
+    const [searchText,setSearchText]=useState("");
     useEffect(()=>{
         fetchData();
     },[]);
@@ -14,6 +16,7 @@ const Body= () =>{
         const json=await data.json();
         const cardData=json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants; //Optional Chaining
         setResList(cardData);
+        setFilteredRestaurants(cardData);
     }
 
     // Conditional Rendering
@@ -24,6 +27,14 @@ const Body= () =>{
     return (listOfRestaurants.length==0) ? <Shimmer /> : (
         <div className="body">
             <div className="filter">
+                <div className="search">
+                    <input type="text" className="search-box" value={searchText} onChange={(e)=>{setSearchText(e.target.value)}}></input>
+                    <button onClick={()=>{
+                        console.log(searchText);
+                        const filteredRes=listOfRestaurants.filter((res)=>(res.info.name.toLowerCase().includes(searchText.toLowerCase())));
+                        setFilteredRestaurants(filteredRes);
+                    }}>Search</button>
+                </div>
                 <button 
                     className="filter-btn" 
                     onClick={()=>{
@@ -35,7 +46,7 @@ const Body= () =>{
                 </button>
             </div>
             <div className="restro-container">
-                {listOfRestaurants.map((restaurant) => (<RestaurantCard key={restaurant.info.id} resData={restaurant}/>))};
+                {filteresRestaurants.map((restaurant) => (<RestaurantCard key={restaurant.info.id} resData={restaurant}/>))};
             </div>
         </div>
     )

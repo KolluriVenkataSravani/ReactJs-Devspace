@@ -15,6 +15,9 @@ class UserClass extends React.Component{
     async componentDidMount(){
         // console.log("Child Component did mount");
         //API call
+        this.timer=setInterval(() =>{
+            console.log("Hi Sravani");
+        },1000); // We are creating a mess here because the timer again starts even when we move to some other page. Clean this mess in componentWillUnmount
         const data=await fetch("https://api.github.com/users/kollurivenkatasravani");
         const json= await data.json();
         this.setState({
@@ -27,6 +30,7 @@ class UserClass extends React.Component{
     }
 
     componentWillUnmount(){
+        clearInterval(this.timer);
         console.log("Component Will Unmount");
     }
 

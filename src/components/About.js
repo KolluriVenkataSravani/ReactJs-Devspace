@@ -7,7 +7,7 @@ const About=()=> {
             <h1>About</h1>
             <h2>Welcome to Sravani's App</h2>
             {/* <User name={"Sravani(FC)"}/> */}
-            <UserClass name={"Sravani(CB)"} location={"Hyderabad"}/>
+            <UserClass name={"Sravani"} location={"Hyderabad"}/>
         </div>
     )
 }

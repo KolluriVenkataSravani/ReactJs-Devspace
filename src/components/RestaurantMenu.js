@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import MenuCard, {vegLabel} from "./MenuCard";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
     const {resId}=useParams();
@@ -29,7 +30,8 @@ const RestaurantMenu = () => {
     } else if (path?.cards[2]?.card?.card?.categories) {
         itemCards = path.cards[2]?.card?.card?.categories.flatMap(category => category?.itemCards || []);
     }
-
+    const categories=path?.cards.filter(c=>c.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+    
   return (
     <div className="menu p-6 bg-white shadow-lg rounded-lg">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">{name}</h1>
@@ -37,17 +39,7 @@ const RestaurantMenu = () => {
             {cuisines.join(", ")}
             <span className="block text-green-600 font-medium mt-1">{costForTwoMessage}</span>
         </p>
-        <div className="flex flex-wrap">
-            {itemCards && itemCards.length > 0 ? (
-                itemCards.map(item => 
-                    item.card.info.itemAttribute?.vegClassifier === "VEG" 
-                    ? <VegMenu key={item.card.info.id} itemData={item.card.info} /> 
-                    : <MenuCard key={item.card.info.id} itemData={item.card.info} />
-                )
-            ) : (
-                <p className="text-center text-gray-500 w-full">No items available</p>
-            )}
-        </div>
+        {categories.map((category,index)=><RestaurantCategory key={index} data={category?.card?.card}/>)}
     </div>
   )
 }

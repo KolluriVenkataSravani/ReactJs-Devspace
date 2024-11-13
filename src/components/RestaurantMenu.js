@@ -4,11 +4,15 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import MenuCard, {vegLabel} from "./MenuCard";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
     const {resId}=useParams();
     const resInfo=useRestaurantMenu(resId);
-    const VegMenu=vegLabel(MenuCard);
+    // const VegMenu=vegLabel(MenuCard);
+
+    const [showIndex, setShowIndex]=useState(null);
+
 
     const onlineStatus=useOnlineStatus();
     if(onlineStatus===false){
@@ -31,7 +35,7 @@ const RestaurantMenu = () => {
         itemCards = path.cards[2]?.card?.card?.categories.flatMap(category => category?.itemCards || []);
     }
     const categories=path?.cards.filter(c=>c.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
-    
+
   return (
     <div className="menu p-6 bg-white shadow-lg rounded-lg">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">{name}</h1>
@@ -39,7 +43,7 @@ const RestaurantMenu = () => {
             {cuisines.join(", ")}
             <span className="block text-green-600 font-medium mt-1">{costForTwoMessage}</span>
         </p>
-        {categories.map((category,index)=><RestaurantCategory key={index} data={category?.card?.card}/>)}
+        {categories.map((category,index)=><RestaurantCategory key={index} data={category?.card?.card} showItems={index===showIndex && true} setShowIndex={()=>setShowIndex(index)} />)}
     </div>
   )
 }

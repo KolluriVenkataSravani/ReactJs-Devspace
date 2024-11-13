@@ -51,8 +51,8 @@ const Body= () =>{
                     <button 
                         className="px-4 py-1 bg-gray-100 m-4 rounded-lg" 
                         onClick={()=>{
-                            const filteredList=listOfRestaurants.filter((res)=>res.info.avgRating>4);
-                            setResList(filteredList);
+                            const filteredList=listOfRestaurants.filter((res)=>res.info.avgRating>4.3);
+                            setFilteredRestaurants(filteredList);
                         }}>
                         Top Rated Restaurants
                     </button>

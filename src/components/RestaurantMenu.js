@@ -27,12 +27,12 @@ const RestaurantMenu = () => {
     const {name, cuisines=[], costForTwoMessage}=resInfo?.cards[2]?.card?.card?.info;
     const path=resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR;
     if (path.cards[1]?.card?.card?.itemCards) {
-        itemCards = path.cards[1]?.card?.card?.itemCards;
+        const itemCards = path.cards[1]?.card?.card?.itemCards;
     }
     else if (path.cards[2]?.card?.card?.itemCards) {
-        itemCards = path.cards[2]?.card?.card?.itemCards;
+        const itemCards = path.cards[2]?.card?.card?.itemCards;
     } else if (path?.cards[2]?.card?.card?.categories) {
-        itemCards = path.cards[2]?.card?.card?.categories.flatMap(category => category?.itemCards || []);
+        const itemCards = path.cards[2]?.card?.card?.categories.flatMap(category => category?.itemCards || []);
     }
     const categories=path?.cards.filter(c=>c.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
 
